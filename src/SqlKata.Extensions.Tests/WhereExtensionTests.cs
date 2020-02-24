@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace SqlKata.Extensions.Tests
@@ -21,7 +18,7 @@ namespace SqlKata.Extensions.Tests
             var query =
                 new Query<Location>()
                     .Select()
-                    .Where(new Location {Latitude = 100});
+                    .Where<Location>(new Location {Latitude = 100});
 
             var expected =
                 new Query("Location")
@@ -60,6 +57,31 @@ namespace SqlKata.Extensions.Tests
 
             actual.Should().Be(expected);
 
+        }
+
+        [Fact] 
+        public void WhereExtension_ExpressionWhere_ReturnExpected()
+        {
+            //Arrange
+            var query =
+                new Query<Location>()
+                    .Select()
+                    .Where(l => l.Latitude, Operator.NotEqual, 100)
+                    .Where(l => l.Longitude, Operator.Eq, 56);
+
+            var expected =
+                new Query("Location")
+                    .Select("Latitude", "Longitude")
+                    .Where("Latitude","<>",100)
+                    .Where(new {Longitude = 56 })
+                    .Compile();
+
+            //Act 
+            var result = query.Compile();
+            var actual = result.Sql;
+
+            actual.Should().Be(expected.Sql);
+            result.Bindings.Should().BeEquivalentTo(expected.Bindings);
         }
 
 

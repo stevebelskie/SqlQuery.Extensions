@@ -112,13 +112,10 @@ namespace SqlKata.Extensions
             return query;
         }
 
-        public static Query<T> Where<T>(
-            this Query<T> query,
-            Expression<Func<T, object>> whereMember,
-            string op
-        )
+        public static Query<T> Where<T>(this Query<T> query, Expression<Func<T, object>> whereMember, Operator op, object value)
         {
-            return null;
+            var whereColumn = GetColumn(whereMember);
+            return (Query<T>) query.Where(whereColumn, op.Symbol, value);
         }
     }
 }
