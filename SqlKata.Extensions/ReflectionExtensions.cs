@@ -16,7 +16,7 @@ namespace SqlKata.Extensions
         public static IEnumerable<PropertyInfo> GetSelectProperties(this Type type)
         {
             return type.GetProperties()
-                       .WhereNot(p => p.HasCustomAttribute<ComplexTypeAttribute>() ||
+                       .WhereNot(p => p.HasCustomAttribute<NotMappedAttribute>() ||
                               !p.HasPublicSetter());
         }
 
