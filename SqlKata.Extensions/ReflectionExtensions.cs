@@ -13,17 +13,37 @@ namespace SqlKata.Extensions
             return enumerable.Where(item => !condition(item));
         }
 
+        public static bool IsAssigned(this Type type, object member)
+        {
+            var defTypeValue = Default(type);
+            if (defTypeValue == null)
+                return member != null;
+            return !defTypeValue.Equals(member);
+        }
+
+        private static object Default(Type t)
+        {
+            var method = typeof(Generic).GetMethod(nameof(Default));
+            return method?.MakeGenericMethod(t).Invoke(new Generic(), null);
+        }
+
+        private class Generic
+        {
+            // ReSharper disable once UnusedMember.Local
+            public T Default<T>() => default;
+        }
+
         public static IEnumerable<PropertyInfo> GetSelectProperties(this Type type)
         {
             return type.GetProperties()
                        .WhereNot(p => p.HasCustomAttribute<NotMappedAttribute>() ||
-                              !p.HasPublicSetter());
+                                      !p.HasPublicSetter());
         }
 
-        private static bool HasPublicSetter(this PropertyInfo property) 
+        private static bool HasPublicSetter(this PropertyInfo property)
             => property.GetSetMethod() != null;
 
-        
+
         private static bool HasCustomAttribute<TAttribute>(this MemberInfo type)
             where TAttribute : Attribute
         {
