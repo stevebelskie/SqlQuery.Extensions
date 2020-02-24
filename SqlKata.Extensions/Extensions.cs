@@ -24,10 +24,11 @@ namespace SqlKata.Extensions
 
         public static Query Select<T>(this Query query, params Expression<Func<T, object>>[] columnSelectors)
         {
+
             var columns = columnSelectors
                           .Select(GetColumn)
-                          .Where(c => !string.IsNullOrEmpty(c))
                           .ToArray();
+
 
             return query.Select(columns);
         }
@@ -44,7 +45,6 @@ namespace SqlKata.Extensions
         public static Query<T> Select<T>(this Query<T> query, params Expression<Func<T, object>>[] columnSelectors)
         {
             var columns = columnSelectors.Select(GetColumn)
-                                         .Where(c => !string.IsNullOrEmpty(c))
                                          .ToArray();
 
             return query.Select(columns);

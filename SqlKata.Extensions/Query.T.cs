@@ -19,7 +19,18 @@ namespace SqlKata.Extensions
             {
                 return this.Select<TFrom>();
             }
-            return (Query<TFrom>) base.Select(columns);
+
+            Method = "select";
+
+            foreach (var column in columns)
+            {
+                AddComponent("select", new Column
+                {
+                    Name = column
+                });
+            }
+
+            return this;
         }
     }
 }

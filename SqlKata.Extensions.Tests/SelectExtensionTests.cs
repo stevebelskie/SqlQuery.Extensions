@@ -24,8 +24,6 @@ namespace SqlKata.Extensions.Tests
             public DateTime CreatedAt { get; set; }
         }
 
-        
-
         [Fact]
         public void SelectExtensionWithExpressionReturnsExpected()
         {

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlKata.Extensions", "SqlKa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlKata.Extensions.Tests", "SqlKata.Extensions.Tests\SqlKata.Extensions.Tests.csproj", "{5F239547-DA75-4CC9-B40D-88ED0DE28D57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlKata.Extensions.Benchmarks", "SqlKata.Extensions.Benchmarks\SqlKata.Extensions.Benchmarks.csproj", "{F9851E70-A94A-4962-9329-FC1ECEE7A043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5F239547-DA75-4CC9-B40D-88ED0DE28D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F239547-DA75-4CC9-B40D-88ED0DE28D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F239547-DA75-4CC9-B40D-88ED0DE28D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9851E70-A94A-4962-9329-FC1ECEE7A043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9851E70-A94A-4962-9329-FC1ECEE7A043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9851E70-A94A-4962-9329-FC1ECEE7A043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9851E70-A94A-4962-9329-FC1ECEE7A043}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
