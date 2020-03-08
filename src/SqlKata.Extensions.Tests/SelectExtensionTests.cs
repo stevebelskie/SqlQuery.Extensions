@@ -12,7 +12,8 @@ namespace SqlKata.Extensions.Tests
     {
         private static readonly SqlServerCompiler Compiler = new SqlServerCompiler();
         public static SqlResult Compile(this Query query) => Compiler.Compile(query);
-        
+        public static SqlResult Compile<T>(this Query<T> query) => Compiler.Compile(query);
+
     }
     public class SelectExtensionTests
     {
